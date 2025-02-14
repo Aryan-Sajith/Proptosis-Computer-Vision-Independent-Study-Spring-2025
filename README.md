@@ -25,7 +25,7 @@ For complete project specifications, please refer to the [Project Proposal](http
 - `README.md` — The primary file that outlines the details of the independent study.
 
 ## Setup and Usage
-TBD
+TBD - Will be setup as project progresses.
 
 ## Phases
 - [ ] **Phase 1: Literature Review** — Review self-supervised learning methods and proptosis detection literature.
