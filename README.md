@@ -21,7 +21,8 @@ This repository hosts the code, datasets, and documentation for the independent 
 For complete project specifications, please refer to the [Project Proposal](https://docs.google.com/document/d/1ldKwuT9kVbgqkMbZu5h2fTgAOMV875FA6mgGuObkOkY/edit?tab=t.0#heading=h.a8wq3v26wylz)
 
 ## Repository Structure
-- `code/` — Contains model implementations, training scripts, and such.
+- `code/` — Contains code for model implementations, training scripts, and so on.
+- `docs/` - Contains important documents like the project proposal.
 - `README.md` — The primary file that outlines the details of the independent study.
 
 ## Setup and Usage
