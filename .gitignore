@@ -1,2 +1,5 @@
 # Ignore the python virtual environment for this project
 .venv
+
+# Ignore local path to downloaded LFW dataset
+code/toy-problem/labelled-faces-in-the-wild
