@@ -1,0 +1,2 @@
+# Ignore the python virtual environment for this project
+.venv
