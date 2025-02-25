@@ -1,0 +1,38 @@
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┓
+┃ Layer (type)                         ┃ Output Shape                ┃         Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━┩
+│ input_layer_1 (InputLayer)           │ (None, 250, 250, 3)         │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ mobilenetv2_1.00_224 (Functional)    │ (None, 8, 8, 1280)          │       2,257,984 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ global_average_pooling2d             │ (None, 1280)                │               0 │
+│ (GlobalAveragePooling2D)             │                             │                 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout (Dropout)                    │ (None, 1280)                │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dense (Dense)                        │ (None, 2)                   │           2,562 │
+└──────────────────────────────────────┴─────────────────────────────┴─────────────────┘
+ Total params: 2,260,546 (8.62 MB)
+ Trainable params: 2,562 (10.01 KB)
+ Non-trainable params: 2,257,984 (8.61 MB)
+Epoch 1/10
+2/2 ━━━━━━━━━━━━━━━━━━━━ 3s 823ms/step - accuracy: 0.4625 - loss: 1.0394 - val_accuracy: 0.6000 - val_loss: 0.6984
+Epoch 2/10
+2/2 ━━━━━━━━━━━━━━━━━━━━ 0s 162ms/step - accuracy: 0.7104 - loss: 0.6419 - val_accuracy: 0.5000 - val_loss: 0.7187
+Epoch 3/10
+2/2 ━━━━━━━━━━━━━━━━━━━━ 0s 164ms/step - accuracy: 0.6354 - loss: 0.6685 - val_accuracy: 0.5000 - val_loss: 0.6974
+Epoch 4/10
+2/2 ━━━━━━━━━━━━━━━━━━━━ 0s 162ms/step - accuracy: 0.7229 - loss: 0.5547 - val_accuracy: 0.6000 - val_loss: 0.6358
+Epoch 5/10
+2/2 ━━━━━━━━━━━━━━━━━━━━ 0s 161ms/step - accuracy: 0.7333 - loss: 0.5179 - val_accuracy: 0.6000 - val_loss: 0.5939
+Epoch 6/10
+2/2 ━━━━━━━━━━━━━━━━━━━━ 0s 161ms/step - accuracy: 0.7771 - loss: 0.4576 - val_accuracy: 0.7000 - val_loss: 0.5734
+Epoch 7/10
+2/2 ━━━━━━━━━━━━━━━━━━━━ 0s 161ms/step - accuracy: 0.8042 - loss: 0.4167 - val_accuracy: 0.7000 - val_loss: 0.5553
+Epoch 8/10
+2/2 ━━━━━━━━━━━━━━━━━━━━ 0s 164ms/step - accuracy: 0.9292 - loss: 0.3549 - val_accuracy: 0.6000 - val_loss: 0.5502
+Epoch 9/10
+2/2 ━━━━━━━━━━━━━━━━━━━━ 0s 164ms/step - accuracy: 0.7833 - loss: 0.4364 - val_accuracy: 0.7000 - val_loss: 0.5508
+Epoch 10/10
+2/2 ━━━━━━━━━━━━━━━━━━━━ 0s 165ms/step - accuracy: 0.7667 - loss: 0.4178 - val_accuracy: 0.7000 - val_loss: 0.5486
+Supervised classifier saved at: code/toy-problem/models/supervised_classifier_top_two_limited.keras

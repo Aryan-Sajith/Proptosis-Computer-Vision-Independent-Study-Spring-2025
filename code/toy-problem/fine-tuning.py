@@ -73,6 +73,18 @@ new_labels = np.array([0 if lbl == class_to_index[top_two_classes[0]] else 1 for
 # print("Selected features shape:", selected_features.shape)
 # print("New labels distribution:", np.unique(new_labels, return_counts=True))
 
+# ---------- Step 6: Limit to Only 100 Images Total ----------
+n_samples = 25  # Total number of images to use from the filtered set
+if selected_features.shape[0] > n_samples:
+    np.random.seed(42)  # For reproducibility
+    sample_indices = np.random.choice(selected_features.shape[0], n_samples, replace=False)
+    selected_features = selected_features[sample_indices]
+    new_labels = new_labels[sample_indices]
+
+print("Limited features shape:", selected_features.shape)
+print("Limited labels distribution:", np.unique(new_labels, return_counts=True))
+
+
 # --- Split the data into Training and Testing Splits ---
 X_train, X_test, y_train, y_test = train_test_split(
     selected_features, new_labels, test_size=0.2, random_state=42
