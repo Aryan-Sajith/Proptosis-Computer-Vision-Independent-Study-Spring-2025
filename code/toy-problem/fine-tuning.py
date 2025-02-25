@@ -70,5 +70,11 @@ selected_labels = int_labels[selected_indices]
 
 # Remap the original label indices to 0 and 1 for the top two classes
 new_labels = np.array([0 if lbl == class_to_index[top_two_classes[0]] else 1 for lbl in selected_labels])
-print("Selected features shape:", selected_features.shape)
-print("New labels distribution:", np.unique(new_labels, return_counts=True))
+# print("Selected features shape:", selected_features.shape)
+# print("New labels distribution:", np.unique(new_labels, return_counts=True))
+
+# --- Split the data into Training and Testing Splits ---
+X_train, X_test, y_train, y_test = train_test_split(
+    selected_features, new_labels, test_size=0.2, random_state=42
+)
+# print("Training samples:", X_train.shape[0], "Validation samples:", X_test.shape[0])
