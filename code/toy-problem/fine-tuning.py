@@ -32,8 +32,8 @@ for images, labels in full_ds:
 all_labels = np.concatenate(all_labels, axis=0)  # shape: (num_images, num_classes)
 int_labels = np.argmax(all_labels, axis=1)  # convert one-hot labels to integer indices
 
-for label in int_labels:
-    print(f'Label: {label} - Class: {all_class_names[label]}')  # print the class name for each label
+# for label in int_labels:
+#     print(f'Label: {label} - Class: {all_class_names[label]}')  # print the class name for each label
 # print("Total images with labels:", int_labels.shape[0])
 
 # --- Determine the 2 monst common classes ---
@@ -49,7 +49,7 @@ def get_top_two_classes(root_path):
             class_counts[person] = count
     # Sort classes by count (descending) and pick the top two.
     top_two = sorted(class_counts.items(), key=lambda x: x[1], reverse=True)[:2]
-    return {cls:cnt for cls, cnt in top_two}
+    return [cls for cls, count in top_two]
 
 top_two_classes = get_top_two_classes(dataset_path)
 # print("Top two classes:", top_two_classes)
@@ -57,3 +57,18 @@ top_two_classes = get_top_two_classes(dataset_path)
 # Build a mapping from class names to indices (based on ordering in full_ds)
 class_to_index = {name: idx for idx, name in enumerate(all_class_names)}
 # print("Class mapping:", class_to_index)
+
+# --- Filter Features and Associated Labels for the Top Two Classes ---
+# Create a mask that selects images from the top two classes
+mask = np.isin(int_labels, [class_to_index[cls] for cls in top_two_classes])
+selected_indices = np.where(mask)[0] 
+# print("Number of images for the top two classes:", len(selected_indices))
+
+# Filters the features and labels based on the selected indices
+selected_features = features[selected_indices]
+selected_labels = int_labels[selected_indices]
+
+# Remap the original label indices to 0 and 1 for the top two classes
+new_labels = np.array([0 if lbl == class_to_index[top_two_classes[0]] else 1 for lbl in selected_labels])
+print("Selected features shape:", selected_features.shape)
+print("New labels distribution:", np.unique(new_labels, return_counts=True))
