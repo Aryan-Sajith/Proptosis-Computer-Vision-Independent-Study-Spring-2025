@@ -78,3 +78,34 @@ X_train, X_test, y_train, y_test = train_test_split(
     selected_features, new_labels, test_size=0.2, random_state=42
 )
 # print("Training samples:", X_train.shape[0], "Validation samples:", X_test.shape[0])
+
+# --- Build, compile and summarize classifier on top of the pre-trained features ---
+# Model definition
+inputs = tf.keras.Input(shape=(selected_features.shape[1],))
+x = tf.keras.layers.Dense(256, activation='relu')(inputs)
+x = tf.keras.layers.Dropout(0.2)(x)
+outputs = tf.keras.layers.Dense(2, activation='softmax')(x)
+classifier_model = tf.keras.Model(inputs, outputs)
+
+# Model compilation
+classifier_model.compile(
+    optimizer='adam',
+    loss='sparse_categorical_crossentropy',
+    metrics=['accuracy']
+)
+
+# Model summary
+classifier_model.summary()
+
+# --- Fine-tuning the classifier on the top two classes ---
+history = classifier_model.fit(
+    X_train, y_train,
+    validation_data=(X_test, y_test),
+    epochs=10,
+    batch_size=32
+)
+
+# --- Save the fine-tuned model ---
+save_path = 'code/toy-problem/models/fine_tuned_classifier_top_two.keras'
+classifier_model.save(save_path)
+print("Fine-tuned classifier saved at:", save_path)
