@@ -10,7 +10,7 @@ root_path = 'code/toy-problem/labelled-faces-in-the-wild/lfw-deepfunneled/lfw-de
 # Specify the two classes you want to use (e.g., the two most common)
 top_two_classes = ['George_W_Bush', 'Colin_Powell']
 # Number of examples per class to use
-num_per_class = 25  # adjust as needed
+num_per_class = 250  # adjust as needed
 
 # ---------- Step 1: Collect File Paths and Labels ----------
 def get_file_paths_and_labels(root, classes, num_samples):

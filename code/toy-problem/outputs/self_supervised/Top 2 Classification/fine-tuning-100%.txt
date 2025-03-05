@@ -1,0 +1,35 @@
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┓
+┃ Layer (type)                         ┃ Output Shape                ┃         Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━┩
+│ input_layer (InputLayer)             │ (None, 1280)                │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dense (Dense)                        │ (None, 256)                 │         327,936 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout (Dropout)                    │ (None, 256)                 │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dense_1 (Dense)                      │ (None, 2)                   │             514 │
+└──────────────────────────────────────┴─────────────────────────────┴─────────────────┘
+ Total params: 328,450 (1.25 MB)
+ Trainable params: 328,450 (1.25 MB)
+ Non-trainable params: 0 (0.00 B)
+Epoch 1/10
+20/20 ━━━━━━━━━━━━━━━━━━━━ 0s 9ms/step - accuracy: 0.6090 - loss: 0.8616 - val_accuracy: 0.6818 - val_loss: 0.6387
+Epoch 2/10
+20/20 ━━━━━━━━━━━━━━━━━━━━ 0s 5ms/step - accuracy: 0.6507 - loss: 0.6313 - val_accuracy: 0.6818 - val_loss: 0.6571
+Epoch 3/10
+20/20 ━━━━━━━━━━━━━━━━━━━━ 0s 5ms/step - accuracy: 0.6960 - loss: 0.5588 - val_accuracy: 0.6753 - val_loss: 0.6574
+Epoch 4/10
+20/20 ━━━━━━━━━━━━━━━━━━━━ 0s 5ms/step - accuracy: 0.7117 - loss: 0.5639 - val_accuracy: 0.6234 - val_loss: 0.6602
+Epoch 5/10
+20/20 ━━━━━━━━━━━━━━━━━━━━ 0s 5ms/step - accuracy: 0.7794 - loss: 0.4812 - val_accuracy: 0.6558 - val_loss: 0.6416
+Epoch 6/10
+20/20 ━━━━━━━━━━━━━━━━━━━━ 0s 5ms/step - accuracy: 0.7563 - loss: 0.4756 - val_accuracy: 0.6818 - val_loss: 0.6386
+Epoch 7/10
+20/20 ━━━━━━━━━━━━━━━━━━━━ 0s 5ms/step - accuracy: 0.8052 - loss: 0.4245 - val_accuracy: 0.6688 - val_loss: 0.7444
+Epoch 8/10
+20/20 ━━━━━━━━━━━━━━━━━━━━ 0s 5ms/step - accuracy: 0.8069 - loss: 0.4180 - val_accuracy: 0.6753 - val_loss: 0.7417
+Epoch 9/10
+20/20 ━━━━━━━━━━━━━━━━━━━━ 0s 5ms/step - accuracy: 0.8274 - loss: 0.3727 - val_accuracy: 0.6688 - val_loss: 0.6678
+Epoch 10/10
+20/20 ━━━━━━━━━━━━━━━━━━━━ 0s 5ms/step - accuracy: 0.8714 - loss: 0.3168 - val_accuracy: 0.6883 - val_loss: 0.7594
+Fine-tuned classifier saved at: code/toy-problem/models/fine_tuned_classifier_top_two.keras
