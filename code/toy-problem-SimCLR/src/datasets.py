@@ -5,7 +5,7 @@ from torch.utils.data import Dataset
 class UTKFaceDataset(Dataset):
     """Loads UTKFace; if mode='ssl', returns unlabeled images;
        if mode in {'train','val','test'} returns (img, label)."""
-    def __init__(self, root_dir, splits_file, mode, transform=None, age_bins=(20,60)):
+    def __init__(self, root_dir, splits_file, mode, transform=None, age_bins=(29,30)):
         """
         splits_file: JSON with keys 'train','val','test' listing filenames.
         mode: 'ssl' or one of the few-shot splits.
@@ -26,7 +26,7 @@ class UTKFaceDataset(Dataset):
             # parse age from filename: "[age]_[gender]_[race]_[...].jpg"
             ages = [int(f.split('_')[0]) for f in self.fnames]
             y_max, o_min = age_bins
-            self.labels = [0 if age < y_max else 1 for age in ages]
+            self.labels = [0 if age <= y_max else 1 for age in ages]
 
     def __len__(self):
         return len(self.fnames)
@@ -41,10 +41,10 @@ class UTKFaceDataset(Dataset):
             return img, self.labels[idx]
 
 def make_fewshot_splits(root_dir, out_file, seed=42,
-                        k_per_class=100, age_bins=(20,60),
+                        k_per_class=100, age_bins=(29, 30),
                         val_per_class=10, test_per_class=10):
     """
-    Sample k images per bin (<y_max, >o_min), then split into train/val/test.
+    Sample k images per bin (<= y_max, >= o_min), then split into train/val/test.
     Saves JSON with lists of filenames.
     """
     random.seed(seed)
@@ -55,9 +55,9 @@ def make_fewshot_splits(root_dir, out_file, seed=42,
             age = int(f.split('_')[0])
         except:
             continue
-        if age < age_bins[0]:
+        if age <= age_bins[0]:
             young.append(f)
-        elif age > age_bins[1]:
+        elif age >= age_bins[1]:
             old.append(f)
     few_y = random.sample(young, k_per_class)
     few_o = random.sample(old, k_per_class)

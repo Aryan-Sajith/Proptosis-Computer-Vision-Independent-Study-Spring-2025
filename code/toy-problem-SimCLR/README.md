@@ -4,7 +4,7 @@ For the other toy-problem we only used rotation prediction and predicted between
 
 ## Overview
 
-This folder implements a toy-phase experiment to demonstrate the benefits of self-supervised learning (SSL) with SimCLR in low-data regimes. We use the UTKFace dataset to pre-train a ResNet-based encoder and then fine-tune it on a small age‐group classification task (<20 vs. >60 years). A from-scratch CNN baseline is compared against the SSL‐pretrained model under identical few-shot conditions.
+This folder implements a toy-phase experiment to demonstrate the benefits of self-supervised learning (SSL) with SimCLR in low-data regimes. We use the UTKFace dataset to pre-train a ResNet-based encoder and then fine-tune it on classifying between the age boundary of 30 (<= 29 vs. >= 30 years). A from-scratch CNN baseline is compared against the SSL‐pretrained model under identical few-shot conditions.
 
 ## Directory Structure
 
@@ -59,7 +59,7 @@ make_fewshot_splits(
     out_file='splits/fewshot_splits.json',
     seed=42,
     k_per_class=100,
-    age_bins=(20,60),
+    age_bins=(29,30),
     val_per_class=10,
     test_per_class=10
 )

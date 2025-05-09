@@ -5,7 +5,7 @@ make_fewshot_splits(
     out_file='splits/fewshot_splits.json',
     seed=42,
     k_per_class=100,
-    age_bins=(20,60),
+    age_bins=(29, 30),  
     val_per_class=10,
     test_per_class=10
 )
