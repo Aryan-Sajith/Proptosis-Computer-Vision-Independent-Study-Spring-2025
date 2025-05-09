@@ -1,0 +1,16 @@
+data:
+  root: "data/UTKFace" # Path to the dataset
+  splits: "splits/fewshot_splits.json" # Path to the splits file
+
+model:
+  arch: "resnet18"  # Base architecture
+  proj_hidden: 512  # Hidden dimension of projection head
+  proj_out: 128     # Output dimension of projection head
+  feat_dim: 512     # Feature dimension of encoder (ResNet18 has 512)
+
+train:
+  batch_size: 256   # Typical SimCLR batch size (adjust based on GPU memory)
+  epochs: 200       # SimCLR typically uses 100-1000 epochs
+  lr: 0.0003        # Learning rate (3e-4 is common for Adam)
+  temp: 0.5         # Temperature parameter for NT-Xent loss
+  save_freq: 20     # Save checkpoints every 20 epochs
