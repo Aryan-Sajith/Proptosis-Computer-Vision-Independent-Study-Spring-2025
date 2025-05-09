@@ -36,7 +36,8 @@ class TwoViewsDataset(Dataset):
 
 def train(cfg):
     # Set device
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    print("Using device:", torch.cuda.get_device_name(0) if torch.cuda.is_available() else "CPU")
+    device = torch.device('mps' if torch.cuda.is_available() else 'cpu')
     
     # Load base dataset (without transforms)
     base_ds = UTKFaceDataset(cfg['data']['root'], cfg['data']['splits'], 'ssl', transform=None)

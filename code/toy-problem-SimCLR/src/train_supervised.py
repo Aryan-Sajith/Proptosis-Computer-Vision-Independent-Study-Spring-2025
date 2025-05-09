@@ -25,7 +25,7 @@ def get_val_transforms():
 def train(cfg, mode):
     """mode: 'scratch' or 'ssl_ft'"""
     # Set device
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    device = torch.device('mps' if torch.cuda.is_available() else 'cpu')
     # Obtain training and validation datasets after indexing the proper splits
     ds_train = UTKFaceDataset(cfg['data']['root'], cfg['data']['splits'], 'train', transform=get_train_transforms())
     ds_val   = UTKFaceDataset(cfg['data']['root'], cfg['data']['splits'], 'val',   transform=get_val_transforms())
