@@ -6,3 +6,6 @@ code/toy-problem/labelled-faces-in-the-wild
 
 # Ignore local path to downloaded UTKFace dataset
 code/toy-problem-SimCLR/data/UTKFace
+
+# Python cache
+__pycache__/
