@@ -1,13 +1,11 @@
 data:
-  root: "data/UTKFace" # Path to the dataset
-  splits: "splits/fewshot_splits.json" # Path to the splits file
-
+  root: data/UTKFace
+  splits: splits/fewshot_splits.json
 model:
-  arch: "resnet18"  # Same architecture as used in pre-training
-  feat_dim: 512     # Feature dimension of encoder output
-
+  arch: resnet18
+  feat_dim: 512
 train:
-  batch_size: 64    # Can be smaller than SimCLR batch size
-  epochs: 10        # Typically fewer epochs for fine-tuning
-  lr: 0.0001        # Lower learning rate for fine-tuning
-  pretrained_ckpt: "checkpoints/simclr_final.pt"  # Path to pretrained SimCLR model
+  batch_size: 64
+  epochs: 30
+  lr: 0.0005
+  pretrained_ckpt: checkpoints/simclr_final.pt

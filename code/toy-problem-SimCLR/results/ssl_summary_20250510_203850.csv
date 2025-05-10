@@ -1,0 +1,4 @@
+Method,Best Validation Accuracy,Epochs to Best,Improvement Over Scratch
+Supervised (scratch),0.6000,1,0.0000
+Regular SSL Fine-tuning,0.4500,10,-0.1500
+Extended SSL Fine-tuning,0.7500,7,0.1500
