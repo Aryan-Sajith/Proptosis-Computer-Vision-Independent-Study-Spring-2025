@@ -4,6 +4,7 @@ from torch.utils.data import DataLoader, Dataset
 from models import SimCLRModel
 from datasets import UTKFaceDataset
 from utils import nt_xent_loss
+from tqdm import tqdm
 
 def get_simclr_transforms():
     """Strong augmentations for SimCLR pre-training"""
@@ -36,8 +37,8 @@ class TwoViewsDataset(Dataset):
 
 def train(cfg):
     # Set device
-    print("Using device:", torch.cuda.get_device_name(0) if torch.cuda.is_available() else "CPU")
-    device = torch.device('mps' if torch.cuda.is_available() else 'cpu')
+    device = torch.device('cuda' if torch.cuda.is_available() else ('mps' if torch.backends.mps.is_available() else 'cpu'))
+    print(f"Using device: {device}")
     
     # Load base dataset (without transforms)
     base_ds = UTKFaceDataset(cfg['data']['root'], cfg['data']['splits'], 'ssl', transform=None)
@@ -46,7 +47,7 @@ def train(cfg):
     ds = TwoViewsDataset(base_ds, get_simclr_transforms())
     
     # Create data loader
-    loader = DataLoader(ds, cfg['train']['batch_size'], shuffle=True, num_workers=4, drop_last=True)
+    loader = DataLoader(ds, cfg['train']['batch_size'], shuffle=True, num_workers=2, drop_last=True)
     
     # Initialize model
     model = SimCLRModel(base_arch=cfg['model']['arch'],
@@ -64,6 +65,7 @@ def train(cfg):
     for epoch in range(cfg['train']['epochs']):
         # Track total loss for this epoch
         total_loss = 0
+        pbar = tqdm(loader, desc=f"Epoch {epoch+1}/{cfg['train']['epochs']}")
 
         # Iterate over batches
         for view1, view2 in loader:
@@ -84,6 +86,8 @@ def train(cfg):
             
             # Accumulate loss
             total_loss += loss.item()
+            pbar.set_postfix(loss=loss.item()) # Set postfix for progress bar
+            pbar.update(1) # Update progress bar
             
         # Print average loss for this epoch    
         avg_loss = total_loss / len(loader)

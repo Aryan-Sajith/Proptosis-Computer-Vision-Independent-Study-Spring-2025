@@ -4,6 +4,7 @@ from torch.utils.data import DataLoader
 from models import SimCLRModel, Classifier
 from datasets import UTKFaceDataset
 from utils import accuracy
+from tqdm import tqdm
 
 def get_train_transforms():
     # Data augmentation for training (includes random transforms)
@@ -24,8 +25,8 @@ def get_val_transforms():
 
 def train(cfg, mode):
     """mode: 'scratch' or 'ssl_ft'"""
-    # Set device
-    device = torch.device('mps' if torch.cuda.is_available() else 'cpu')
+    device = torch.device('cuda' if torch.cuda.is_available() else ('mps' if torch.backends.mps.is_available() else 'cpu'))
+    print(f"Using device: {device}")
     # Obtain training and validation datasets after indexing the proper splits
     ds_train = UTKFaceDataset(cfg['data']['root'], cfg['data']['splits'], 'train', transform=get_train_transforms())
     ds_val   = UTKFaceDataset(cfg['data']['root'], cfg['data']['splits'], 'val',   transform=get_val_transforms())
@@ -60,9 +61,9 @@ def train(cfg, mode):
 
     # Training loop
     for epoch in range(cfg['train']['epochs']):
-
         # Train the model
         encoder.train(); clf.train()
+        pbar = tqdm(dl_train, desc=f"Epoch {epoch+1}/{cfg['train']['epochs']}", unit="batch") 
 
         # Define total loss for this epoch
         for x,y in dl_train:
@@ -75,6 +76,9 @@ def train(cfg, mode):
             loss = torch.nn.functional.cross_entropy(out, y)
             # Backpropagation: Zero gradients, compute loss, and update weights
             opt.zero_grad(); loss.backward(); opt.step()
+            # Update the progress bar with the loss
+            pbar.set_postfix(loss=loss.item())
+            pbar.update(1)
         
         # Sets both the encoder and classifier to evaluation mode
         # This is important for dropout and batch normalization layers
