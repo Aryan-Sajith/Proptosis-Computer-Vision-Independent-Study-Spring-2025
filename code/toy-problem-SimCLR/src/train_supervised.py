@@ -9,8 +9,8 @@ from tqdm import tqdm
 def get_train_transforms():
     # Data augmentation for training (includes random transforms)
     return transforms.Compose([
-        transforms.Resize(256),
-        transforms.CenterCrop(224),
+        transforms.Resize(112),
+        transforms.CenterCrop(96),
         transforms.RandomHorizontalFlip(),
         transforms.ToTensor(),
     ])
@@ -18,8 +18,8 @@ def get_train_transforms():
 def get_val_transforms():
     # Deterministic transforms for validation (no random augmentations)
     return transforms.Compose([
-        transforms.Resize(256),
-        transforms.CenterCrop(224),
+        transforms.Resize(112),
+        transforms.CenterCrop(96),
         transforms.ToTensor(),
     ])
 

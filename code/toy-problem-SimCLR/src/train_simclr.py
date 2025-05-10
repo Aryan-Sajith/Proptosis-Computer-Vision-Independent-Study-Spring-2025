@@ -12,11 +12,11 @@ def get_simclr_transforms():
         brightness=0.8, contrast=0.8, saturation=0.8, hue=0.2)
     
     return transforms.Compose([
-        transforms.RandomResizedCrop(224),
+        transforms.RandomResizedCrop(96),
         transforms.RandomHorizontalFlip(),
         transforms.RandomApply([color_jitter], p=0.8),
         transforms.RandomGrayscale(p=0.2),
-        transforms.GaussianBlur(kernel_size=23, sigma=(0.1, 2.0)),
+        transforms.GaussianBlur(kernel_size=9, sigma=(0.1, 2.0)),
         transforms.ToTensor(),
     ])
 

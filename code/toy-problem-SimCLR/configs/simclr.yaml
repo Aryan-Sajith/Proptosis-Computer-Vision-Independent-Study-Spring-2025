@@ -10,7 +10,7 @@ model:
 
 train:
   batch_size: 256   # Typical SimCLR batch size (adjust based on GPU memory)
-  epochs: 200       # SimCLR typically uses 100-1000 epochs
+  epochs: 10       # SimCLR typically uses 100-1000 epochs
   lr: 0.0003        # Learning rate (3e-4 is common for Adam)
   temp: 0.5         # Temperature parameter for NT-Xent loss
-  save_freq: 20     # Save checkpoints every 20 epochs
+  save_freq: 5     # Save checkpoints every 20 epochs

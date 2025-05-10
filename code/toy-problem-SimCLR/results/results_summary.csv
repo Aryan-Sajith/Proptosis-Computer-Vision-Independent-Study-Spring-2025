@@ -1,0 +1,4 @@
+Method,Best Validation Accuracy,Training Time (s),Convergence Speed
+Supervised (scratch),0.8000,114.99,Baseline
+SSL Fine-tuned,0.0000,4.02,Faster
+Improvement,-0.8000,110.97,
