@@ -4,8 +4,8 @@
 # Ignore local path to downloaded LFW dataset
 code/toy-problem/labelled-faces-in-the-wild
 
-# Ignore local path to downloaded UTKFace dataset
-code/toy-problem-SimCLR/data/UTKFace
+# Ignore UTKFace dataset
+UTKFace*
 
 # Python cache
 __pycache__/
