@@ -2,6 +2,9 @@
 
 This repository hosts the code, datasets, and documentation for the independent study titled **"Leveraging Self-Supervised Learning for Early Medical Screening: A Pilot Study in Proptosis Detection."** The project investigates the use of self-supervised learning techniques to detect subtle facial indicators of proptosis, a potential early sign of systemic diseases such as Thyroid Eye Disease and tumors. The study is organized into two main phases: a proof-of-concept using synthetic or toy datasets, followed by the application of these methods to clinical proptosis screening data (with all necessary ethical approvals and safeguards in place).
 
+# Research Paper Link:
+https://www.overleaf.com/read/qncrddmypbjh#2c1c11
+
 ## Project Overview
 
 - **Objective**: To assess the effectiveness of self-supervised learning in low-data scenarios and to develop a non-invasive early screening tool for proptosis.
